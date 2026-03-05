@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String
+  credits       Int       @default(100) // Free credits for new users
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  documents     Document[]
+  chatMessages  ChatMessage[]
+  subscriptions Subscription[]
+}
+
+model Document {
+  id        String    @id @default(cuid())
+  title     String
+  content   String
+  type      String    // 'blog_post', 'social_media', 'email', 'product_description', 'chat', 'image', 'code', etc.
+  wordCount Int
+  imageUrl  String?   // For image generation
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ChatMessage {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prompt    String
+  response  String
+  tokens    Int
+  createdAt DateTime  @default(now())
+}
+
+model Subscription {
+  id        String    @id @default(cuid())
+  userId    String    @unique
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan      String    // 'free', 'basic', 'pro', 'pro_plus'
+  credits   Int       // Monthly credit allowance
+  stripeId  String?
+  createdAt DateTime  @default(now())
+  expiresAt DateTime?
+}
+
+model Usage {
+  id        String    @id @default(cuid())
+  userId    String
+  action    String    // 'generate_content', 'api_call', etc.
+  creditsUsed Int
+  createdAt DateTime  @default(now())
+}
