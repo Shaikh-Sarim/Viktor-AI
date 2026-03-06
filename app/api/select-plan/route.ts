@@ -17,6 +17,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as any).id || session.user.email;
+    
+    if (!userId) {
+      return NextResponse.json({ error: "User ID not found" }, { status: 400 });
+    }
+
     const { plan } = await request.json();
 
     if (!plan || !PLAN_CREDITS[plan]) {
@@ -28,9 +34,9 @@ export async function POST(request: NextRequest) {
 
     // Update or create subscription
     const subscription = await prisma.subscription.upsert({
-      where: { userId: session.user.id },
+      where: { userId: userId },
       create: {
-        userId: session.user.id,
+        userId: userId,
         plan: plan,
         credits: PLAN_CREDITS[plan],
       },
@@ -42,13 +48,13 @@ export async function POST(request: NextRequest) {
 
     // Update user credits
     await prisma.user.update({
-      where: { id: session.user.id },
+      where: { id: userId },
       data: {
         credits: PLAN_CREDITS[plan],
       },
     });
 
-    console.log(`✓ Plan selected: ${plan} for user ${session.user.id}`);
+    console.log(`✓ Plan selected: ${plan} for user ${userId}`);
 
     return NextResponse.json({
       success: true,
