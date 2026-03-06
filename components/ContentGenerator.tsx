@@ -101,7 +101,7 @@ export default function ContentGenerator({
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Describe what you want to generate... Be as specific as possible for better results."
-              className="w-full h-24 sm:h-32 p-3 sm:p-4 bg-slate-700 text-sm sm:text-base text-white rounded-lg border border-slate-600 focus:border-cyan-500 focus:outline-none resize-none"
+              className="w-full h-20 sm:h-24 md:h-32 p-3 sm:p-4 bg-slate-700 text-xs sm:text-sm md:text-base text-white rounded-lg border border-slate-600 focus:border-cyan-500 focus:outline-none resize-none"
             />
           </div>
 

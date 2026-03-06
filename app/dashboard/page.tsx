@@ -96,7 +96,7 @@ export default function Dashboard() {
             <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
               <div className={`px-2 sm:px-4 py-2 sm:py-2.5 rounded-lg flex items-center gap-1 sm:gap-2 backdrop-blur transition-all duration-300 text-xs sm:text-sm ${credits <= 0 ? "bg-red-900/30 border border-red-600/50" : credits <= 10 ? "bg-yellow-900/30 border border-yellow-600/50" : "bg-cyan-500/10 border border-cyan-500/50"}`}>
                 <Zap className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${credits <= 0 ? "text-red-500" : credits <= 10 ? "text-yellow-500" : "text-cyan-400"}`} />
-                <span className={`font-bold hidden sm:inline ${credits <= 0 ? "text-red-300" : credits <= 10 ? "text-yellow-300" : "text-cyan-300"}`}>{credits}</span>
+                <span className={`font-bold text-xs sm:text-sm ${credits <= 0 ? "text-red-300" : credits <= 10 ? "text-yellow-300" : "text-cyan-300"}`}>{credits}</span>
               </div>
               <button onClick={() => signOut()} className="hidden sm:flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 font-semibold shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transform hover:scale-105 text-sm">
                 <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />

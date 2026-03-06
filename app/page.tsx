@@ -32,12 +32,12 @@ export default function Home() {
               <h1 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Viktor AI</h1>
             </div>
             <div className="flex items-center gap-2 sm:gap-4">
-              <Link href="/login" className="hidden sm:block text-slate-300 hover:text-white transition-colors duration-300 font-medium text-sm">
+              <Link href="/login" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium text-xs sm:text-sm px-2 sm:px-0 py-2 sm:py-0">
                 Login
               </Link>
               <Link
                 href="/register"
-                className="px-3 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 text-sm sm:text-base"
+                className="px-3 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 text-xs sm:text-base whitespace-nowrap"
               >
                 Sign Up
               </Link>
