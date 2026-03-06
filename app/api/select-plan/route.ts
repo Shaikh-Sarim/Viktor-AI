@@ -41,6 +41,21 @@ export async function POST(request: NextRequest) {
 
     console.log("Attempting to upsert subscription for userId:", userId);
     
+    // Check if user exists first
+    const userExists = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!userExists) {
+      console.error("User not found in database:", userId);
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      );
+    }
+
+    console.log("User found, creating/updating subscription");
+    
     // Update or create subscription
     const subscription = await prisma.subscription.upsert({
       where: { userId: userId },
@@ -73,11 +88,20 @@ export async function POST(request: NextRequest) {
       subscription,
     });
   } catch (error: any) {
-    console.error("Error selecting plan:", error);
-    console.error("Error message:", error.message);
-    console.error("Error code:", error.code);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorCode = (error as any).code;
+    
+    console.error("DETAILED ERROR in select-plan:", {
+      message: errorMessage,
+      code: errorCode,
+      stack: error instanceof Error ? error.stack : null,
+      timestamp: new Date().toISOString(),
+      userId,
+      plan
+    });
+    
     return NextResponse.json(
-      { error: "Failed to select plan", details: error.message },
+      { error: "Failed to select plan", details: errorMessage },
       { status: 500 }
     );
   }

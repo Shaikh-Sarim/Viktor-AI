@@ -43,19 +43,41 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as any).id;
+    if (!userId) {
+      console.error("User ID not found in session:", session.user);
+      return NextResponse.json(
+        { error: "User ID not found in session" },
+        { status: 400 }
+      );
+    }
+
     const { plan } = await request.json();
 
     if (!plan || !PLAN_PRICES[plan]) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
     }
 
+    // Check if user exists first
+    const userExists = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!userExists) {
+      console.error("User not found in database:", userId);
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      );
+    }
+
     // If PayPal not configured, create subscription directly (for testing)
     if (!PAYPAL_CLIENT_ID || !PAYPAL_SECRET) {
       console.warn("PayPal not configured. Creating subscription without payment.");
       const subscription = await prisma.subscription.upsert({
-        where: { userId: session.user.id },
+        where: { userId: userId },
         create: {
-          userId: session.user.id,
+          userId: userId,
           plan: plan,
           credits: PLAN_PRICES[plan].credits,
         },
@@ -66,7 +88,7 @@ export async function POST(request: NextRequest) {
       });
 
       await prisma.user.update({
-        where: { id: session.user.id },
+        where: { id: userId },
         data: {
           credits: PLAN_PRICES[plan].credits,
         },
@@ -131,9 +153,14 @@ export async function POST(request: NextRequest) {
         ?.href,
     });
   } catch (error: any) {
-    console.error("Error creating PayPal order:", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("DETAILED ERROR in paypal-create-order:", {
+      message: errorMessage,
+      stack: error instanceof Error ? error.stack : null,
+      timestamp: new Date().toISOString()
+    });
     return NextResponse.json(
-      { error: error.message || "Failed to create payment" },
+      { error: "Failed to create payment", details: errorMessage },
       { status: 500 }
     );
   }
