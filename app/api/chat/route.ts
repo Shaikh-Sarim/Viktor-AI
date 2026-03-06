@@ -60,12 +60,17 @@ export async function POST(request: NextRequest) {
     console.log("=== Chat API Request ===");
     
     // Check if API key exists
-    if (!GROQ_API_KEY) {
-      console.error("GROQ_API_KEY is not defined in environment variables");
-      return NextResponse.json(
-        { error: "API configuration error: GROQ_API_KEY not set. Add it to .env.local and restart the server." },
-        { status: 500 }
-      );
+    if (!GROQ_API_KEY || GROQ_API_KEY.includes("xxx")) {
+      console.warn("GROQ_API_KEY not configured, using demo mode");
+      // Demo mode - return placeholder response
+      const { prompt } = await request.json();
+      
+      return NextResponse.json({
+        success: true,
+        response: `Demo mode: This is a placeholder response for "${prompt}". To enable real AI chat, add your GROQ_API_KEY to Vercel environment variables at: https://vercel.com/dashboard → Select Project → Settings → Environment Variables → Add GROQ_API_KEY`,
+        tokens: 10,
+        demo: true
+      });
     }
     console.log("✓ GROQ_API_KEY exists");
 
