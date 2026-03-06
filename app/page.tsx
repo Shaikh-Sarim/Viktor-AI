@@ -48,8 +48,11 @@ export default function Home() {
         {/* Hero Section */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-12 sm:py-24">
           <div className="text-center mb-12 sm:mb-20">
-            <div className="mb-4 sm:mb-6 inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-full backdrop-blur">
-              <span className="text-xs sm:text-sm font-semibold text-cyan-300">⚡ AI-Powered Platform</span>
+            <div className="mb-4 sm:mb-6 inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/50 rounded-full backdrop-blur">
+              <span className="text-xs sm:text-sm font-semibold text-green-300 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                Online & Ready
+              </span>
             </div>
             <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               Create Content<br/>
