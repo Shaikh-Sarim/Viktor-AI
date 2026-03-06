@@ -10,16 +10,12 @@ const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
 export async function POST(request: NextRequest) {
   try {
     // Check if API key exists
-    if (!GROQ_API_KEY || GROQ_API_KEY.includes("xxx")) {
-      console.warn("GROQ_API_KEY not configured, using demo mode");
-      const { prompt, contentType } = await request.json();
-      
-      return NextResponse.json({
-        success: true,
-        content: `Demo Mode Content\n\nThis is placeholder ${contentType || 'content'} for: "${prompt}"\n\nTo enable real content generation, add your GROQ_API_KEY to Vercel environment variables.`,
-        tokens: 10,
-        demo: true
-      });
+    if (!GROQ_API_KEY) {
+      console.error("GROQ_API_KEY is not defined");
+      return NextResponse.json(
+        { error: "API configuration error: GROQ_API_KEY not set" },
+        { status: 500 }
+      );
     }
 
     const session = await auth();
