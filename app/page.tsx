@@ -83,7 +83,7 @@ export default function Home() {
               <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2.5 sm:p-3 md:p-3.5 rounded-lg w-fit mb-3 sm:mb-4 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-shadow duration-300">
                 <Zap className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">⚡ Lightning Fast</h3>
+              <h3 className="text-xl font-bold text-white mb-3">⚡ Ultra Fast Processing</h3>
               <p className="text-slate-300 leading-relaxed">
                 Generate content instantly with enterprise-grade AI. Real-time processing with integrated web search for accurate, up-to-date results.
               </p>
