@@ -96,8 +96,6 @@ export async function POST(request: NextRequest) {
       code: errorCode,
       stack: error instanceof Error ? error.stack : null,
       timestamp: new Date().toISOString(),
-      userId,
-      plan
     });
     
     return NextResponse.json(
