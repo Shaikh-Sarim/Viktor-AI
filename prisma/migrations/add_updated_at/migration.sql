@@ -1,0 +1,2 @@
+-- Add updatedat column to User table
+ALTER TABLE "User" ADD COLUMN "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
