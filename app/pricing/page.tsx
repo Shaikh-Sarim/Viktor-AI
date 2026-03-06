@@ -169,25 +169,25 @@ export default function PricingPage() {
                   </div>
                 )}
 
-                <div className="p-8">
+                <div className="p-5 sm:p-8">
                   {/* Plan Name and Price */}
-                  <h3 className={`text-2xl font-bold mb-2 ${plan.highlighted ? "text-white" : "text-white"}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold mb-2 ${plan.highlighted ? "text-white" : "text-white"}`}>
                     {plan.name}
                   </h3>
-                  <p className={`text-sm mb-6 ${plan.highlighted ? "text-cyan-200" : "text-slate-400"}`}>
+                  <p className={`text-xs sm:text-sm mb-4 sm:mb-6 ${plan.highlighted ? "text-cyan-200" : "text-slate-400"}`}>
                     {plan.description}
                   </p>
 
-                  <div className="mb-8">
+                  <div className="mb-6 sm:mb-8">
                     <div className="flex items-baseline gap-2">
-                      <span className={`text-4xl font-bold ${plan.highlighted ? "text-white" : "text-cyan-400"}`}>
+                      <span className={`text-2xl sm:text-4xl font-bold ${plan.highlighted ? "text-white" : "text-cyan-400"}`}>
                         {plan.price}
                       </span>
-                      <span className={`text-sm ${plan.highlighted ? "text-cyan-200" : "text-slate-400"}`}>
+                      <span className={`text-xs sm:text-sm ${plan.highlighted ? "text-cyan-200" : "text-slate-400"}`}>
                         {plan.period}
                       </span>
                     </div>
-                    <div className={`mt-3 text-sm font-semibold ${plan.highlighted ? "text-cyan-100" : "text-cyan-400"}`}>
+                    <div className={`mt-2 sm:mt-3 text-xs sm:text-sm font-semibold ${plan.highlighted ? "text-cyan-100" : "text-cyan-400"}`}>
                       {plan.credits.toLocaleString()} credits/month
                     </div>
                   </div>
@@ -195,7 +195,7 @@ export default function PricingPage() {
                   {/* CTA Button */}
                   <button
                     onClick={() => handleChoosePlan(plan.name)}
-                    className={`w-full py-3 px-4 rounded-lg font-bold transition-all duration-300 mb-8 transform hover:scale-105 ${
+                    className={`w-full py-2 sm:py-3 px-3 sm:px-4 rounded-lg font-bold text-xs sm:text-base transition-all duration-300 mb-6 sm:mb-8 transform hover:scale-105 ${
                       plan.highlighted
                         ? "bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/50"
                         : "bg-slate-700/50 text-white hover:bg-slate-600/50 border border-slate-600/50"
@@ -205,11 +205,11 @@ export default function PricingPage() {
                   </button>
 
                   {/* Features */}
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <span className={`text-lg flex-shrink-0 ${plan.highlighted ? "text-cyan-300" : "text-green-400"}`}>✓</span>
-                        <span className={`text-sm leading-relaxed ${plan.highlighted ? "text-cyan-50" : "text-slate-300"}`}>
+                      <div key={idx} className="flex items-start gap-2 sm:gap-3">
+                        <span className={`text-base sm:text-lg flex-shrink-0 ${plan.highlighted ? "text-cyan-300" : "text-green-400"}`}>✓</span>
+                        <span className={`text-xs sm:text-sm leading-relaxed ${plan.highlighted ? "text-cyan-50" : "text-slate-300"}`}>
                           {feature}
                         </span>
                       </div>
