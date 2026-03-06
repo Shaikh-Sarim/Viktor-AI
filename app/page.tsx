@@ -31,13 +31,13 @@ export default function Home() {
               </div>
               <h1 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Viktor AI</h1>
             </div>
-            <div className="flex items-center gap-2 sm:gap-4">
-              <Link href="/login" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium text-xs sm:text-sm px-2 sm:px-0 py-2 sm:py-0">
+            <div className="flex items-center gap-1.5 sm:gap-4">
+              <Link href="/login" className="px-2.5 sm:px-4 py-1.5 sm:py-2.5 bg-slate-700/50 hover:bg-slate-600/50 text-white font-semibold text-xs sm:text-sm rounded-lg transition-all duration-300 border border-slate-600 hover:border-cyan-500/50 whitespace-nowrap">
                 Login
               </Link>
               <Link
                 href="/register"
-                className="px-3 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 text-xs sm:text-base whitespace-nowrap"
+                className="px-3 sm:px-6 py-1.5 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 text-xs sm:text-base whitespace-nowrap"
               >
                 Sign Up
               </Link>
@@ -56,7 +56,7 @@ export default function Home() {
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">Instantly with AI</span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 mb-6 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
-              Generate high-quality content in seconds. No expensive APIs. Works locally on your machine with lightning-fast LLMs.
+              Generate high-quality content in seconds using advanced AI models. Cloud-powered with intelligent search capabilities and real-time processing.
             </p>
             <div className="flex gap-2 sm:gap-4 justify-center flex-wrap">
               <Link
@@ -82,7 +82,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-3">⚡ Lightning Fast</h3>
               <p className="text-slate-300 leading-relaxed">
-                Generate content instantly without waiting. Works completely offline with zero latency.
+                Generate content instantly with enterprise-grade AI. Real-time processing with integrated web search for accurate, up-to-date results.
               </p>
             </div>
 
@@ -90,9 +90,9 @@ export default function Home() {
               <div className="bg-gradient-to-br from-blue-500 to-purple-500 p-3.5 rounded-lg w-fit mb-4 group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-shadow duration-300">
                 <Shield className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">🔒 100% Private</h3>
+              <h3 className="text-xl font-bold text-white mb-3">🔒 Secure & Smart</h3>
               <p className="text-slate-300 leading-relaxed">
-                Your data never leaves your machine. No cloud, no tracking, no third-party APIs.
+                Enterprise-grade AI with secure processing and advanced search capabilities. Built for professionals who demand speed and accuracy.
               </p>
             </div>
 
