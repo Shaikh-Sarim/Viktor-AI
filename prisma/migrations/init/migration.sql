@@ -4,8 +4,9 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "name" TEXT,
     "password" TEXT NOT NULL,
-    "credits" INTEGER NOT NULL DEFAULT 0,
+    "credits" INTEGER NOT NULL DEFAULT 100,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "User_email_key" UNIQUE ("email")
 );
 

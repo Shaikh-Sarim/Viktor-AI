@@ -103,32 +103,32 @@ export default function PricingPage() {
       <div className="relative z-10">
         {/* Navigation */}
         <nav className="border-b border-slate-700/50 bg-slate-900/30 backdrop-blur-md sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-300">
-              <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2.5 rounded-lg shadow-lg shadow-cyan-500/50">
-                <Brain className="w-6 h-6 text-white" />
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity duration-300 min-w-0">
+              <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2 sm:p-2.5 rounded-lg shadow-lg shadow-cyan-500/50 flex-shrink-0">
+                <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Viktor AI</h1>
+              <h1 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent hidden sm:block">Viktor AI</h1>
             </Link>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               {session ? (
                 <>
-                  <span className="text-slate-300 hidden sm:inline">{session.user?.email}</span>
+                  <span className="text-slate-300 hidden md:inline text-xs sm:text-sm">{session.user?.email}</span>
                   <Link
                     href="/dashboard"
-                    className="px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all duration-300 font-semibold shadow-lg shadow-cyan-500/50 transform hover:scale-105"
+                    className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all duration-300 font-semibold shadow-lg shadow-cyan-500/50 transform hover:scale-105 text-xs sm:text-sm"
                   >
                     Dashboard
                   </Link>
                 </>
               ) : (
                 <>
-                  <Link href="/login" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium">
+                  <Link href="/login" className="hidden sm:block text-slate-300 hover:text-white transition-colors duration-300 font-medium text-xs sm:text-sm">
                     Login
                   </Link>
                   <Link
                     href="/register"
-                    className="px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all duration-300 font-semibold shadow-lg shadow-cyan-500/50 transform hover:scale-105"
+                    className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all duration-300 font-semibold shadow-lg shadow-cyan-500/50 transform hover:scale-105 text-xs sm:text-sm"
                   >
                     Sign Up
                   </Link>
@@ -139,21 +139,21 @@ export default function PricingPage() {
         </nav>
 
         {/* Hero */}
-        <div className="max-w-7xl mx-auto px-4 py-24 text-center">
-          <div className="mb-6 inline-block px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-full backdrop-blur">
-            <span className="text-sm font-semibold text-cyan-300">Transparent Pricing</span>
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-12 sm:py-24 text-center">
+          <div className="mb-4 sm:mb-6 inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-full backdrop-blur">
+            <span className="text-xs sm:text-sm font-semibold text-cyan-300">Transparent Pricing</span>
           </div>
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
             Choose Your <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Perfect Plan</span>
           </h1>
-          <p className="text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
             Scale as you grow. No credit card required for Free plan. Cancel anytime.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="max-w-7xl mx-auto px-4 pb-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 pb-12 sm:pb-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {plans.map((plan) => (
               <div
                 key={plan.name}

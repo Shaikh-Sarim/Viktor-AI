@@ -48,22 +48,22 @@ export default function CodeGeneratorComponent({
   };
 
   return (
-    <div className="bg-slate-800 rounded-lg p-8 space-y-6">
-      <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-        <Code2 className="w-6 h-6 text-cyan-500" />
+    <div className="bg-slate-800 rounded-lg sm:rounded-lg p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
+      <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+        <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-500" />
         Code Generator
       </h2>
 
-      <form onSubmit={handleGenerate} className="space-y-4">
+      <form onSubmit={handleGenerate} className="space-y-3 sm:space-y-4">
         {/* Language Select */}
         <div>
-          <label className="block text-sm font-semibold text-white mb-2">
+          <label className="block text-xs sm:text-sm font-semibold text-white mb-2">
             Programming Language
           </label>
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className="w-full px-4 py-2 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-cyan-500 focus:outline-none"
+            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-slate-700 text-sm sm:text-base text-white rounded-lg border border-slate-600 focus:border-cyan-500 focus:outline-none"
           >
             {languages.map((lang) => (
               <option key={lang} value={lang}>
@@ -75,14 +75,14 @@ export default function CodeGeneratorComponent({
 
         {/* Prompt Input */}
         <div>
-          <label className="block text-sm font-semibold text-white mb-2">
+          <label className="block text-xs sm:text-sm font-semibold text-white mb-2">
             Describe what you want to code
           </label>
           <textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="e.g., Create a function to reverse a string"
-            className="w-full h-24 p-4 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-cyan-500 focus:outline-none resize-none"
+            className="w-full h-20 sm:h-24 p-3 sm:p-4 bg-slate-700 text-sm sm:text-base text-white rounded-lg border border-slate-600 focus:border-cyan-500 focus:outline-none resize-none"
           />
         </div>
 
@@ -90,16 +90,16 @@ export default function CodeGeneratorComponent({
         <button
           type="submit"
           disabled={loading || !prompt.trim()}
-          className="w-full py-3 px-6 bg-cyan-600 hover:bg-cyan-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold rounded-lg transition flex items-center justify-center gap-2"
+          className="w-full py-2.5 sm:py-3 px-4 sm:px-6 bg-cyan-600 hover:bg-cyan-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold rounded-lg transition flex items-center justify-center gap-2 text-sm sm:text-base"
         >
           {loading ? (
             <>
-              <Loader className="w-5 h-5 animate-spin" />
+              <Loader className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
               Generating Code...
             </>
           ) : (
             <>
-              <Code2 className="w-5 h-5" />
+              <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />
               Generate Code
             </>
           )}
@@ -108,29 +108,29 @@ export default function CodeGeneratorComponent({
 
       {/* Error */}
       {error && (
-        <div className="bg-red-900/50 border border-red-600 rounded-lg p-4">
-          <p className="text-red-300">{error}</p>
+        <div className="bg-red-900/50 border border-red-600 rounded-lg p-3 sm:p-4">
+          <p className="text-red-300 text-xs sm:text-sm">{error}</p>
         </div>
       )}
 
       {/* Result */}
       {result && (
         <div className="bg-slate-900 rounded-lg overflow-hidden">
-          <div className="bg-slate-700 px-4 py-3 flex items-center justify-between">
-            <span className="text-white font-semibold">{language.toUpperCase()}</span>
+          <div className="bg-slate-700 px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
+            <span className="text-white font-semibold text-sm sm:text-base">{language.toUpperCase()}</span>
             <button
               onClick={() => {
                 navigator.clipboard.writeText(result);
                 alert("Code copied to clipboard!");
               }}
-              className="flex items-center gap-2 px-3 py-1 bg-cyan-600 hover:bg-cyan-700 text-white rounded transition text-sm"
+              className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white rounded transition text-xs sm:text-sm font-semibold"
             >
-              <Copy className="w-4 h-4" />
+              <Copy className="w-3 h-3 sm:w-4 sm:h-4" />
               Copy
             </button>
           </div>
-          <pre className="p-4 overflow-x-auto">
-            <code className="text-slate-300 text-sm">{result}</code>
+          <pre className="p-3 sm:p-4 overflow-x-auto max-h-72 sm:max-h-96 overflow-y-auto">
+            <code className="text-slate-300 text-xs sm:text-sm">{result}</code>
           </pre>
         </div>
       )}

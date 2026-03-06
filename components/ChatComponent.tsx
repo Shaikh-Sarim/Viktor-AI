@@ -112,16 +112,17 @@ export default function ChatComponent({
   };
 
   return (
-    <div className="bg-slate-800/50 rounded-2xl p-8 h-screen md:h-[600px] flex flex-col border border-slate-700/50 backdrop-blur">
-      <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-        <MessageCircle className="w-6 h-6 text-cyan-500" />
-        AI Chat with Documents
+    <div className="bg-slate-800/50 rounded-lg sm:rounded-2xl p-3 sm:p-6 md:p-8 h-[600px] sm:h-[600px] md:h-[600px] flex flex-col border border-slate-700/50 backdrop-blur">
+      <h2 className="text-lg sm:text-2xl font-bold text-white mb-3 sm:mb-6 flex items-center gap-2">
+        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-500" />
+        <span className="hidden sm:inline">AI Chat with Documents</span>
+        <span className="sm:hidden">AI Chat</span>
       </h2>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto mb-6 space-y-4 bg-slate-700/30 rounded-lg p-4 border border-slate-700/50">
+      <div className="flex-1 overflow-y-auto mb-3 sm:mb-6 space-y-3 sm:space-y-4 bg-slate-700/30 rounded-lg p-3 sm:p-4 border border-slate-700/50">
         {messages.length === 0 ? (
-          <div className="text-slate-400 text-center py-8">
+          <div className="text-slate-400 text-center py-8 text-xs sm:text-sm">
             <p>Start a conversation with AI... Upload documents for analysis</p>
           </div>
         ) : (
@@ -133,7 +134,7 @@ export default function ChatComponent({
               }`}
             >
               <div
-                className={`rounded-lg px-4 py-2 max-w-xs ${
+                className={`rounded-lg px-3 sm:px-4 py-2 max-w-xs sm:max-w-md text-xs sm:text-sm ${
                   msg.role === "user"
                     ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/30"
                     : "bg-slate-600/50 text-slate-100 border border-slate-500/30"
@@ -146,8 +147,8 @@ export default function ChatComponent({
         )}
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-slate-600/50 text-slate-100 rounded-lg px-4 py-2 flex items-center gap-2 border border-slate-500/30">
-              <Loader className="w-4 h-4 animate-spin" />
+            <div className="bg-slate-600/50 text-slate-100 rounded-lg px-3 sm:px-4 py-2 flex items-center gap-2 border border-slate-500/30 text-xs sm:text-sm">
+              <Loader className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" />
               Thinking...
             </div>
           </div>
@@ -156,15 +157,15 @@ export default function ChatComponent({
 
       {/* Uploaded Files Display */}
       {uploadedFiles.length > 0 && (
-        <div className="mb-4 p-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg border border-purple-500/30">
-          <p className="text-purple-300 text-sm font-semibold mb-3">📄 Uploaded Documents ({uploadedFiles.length}):</p>
-          <div className="space-y-2">
+        <div className="mb-3 sm:mb-4 p-2 sm:p-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg border border-purple-500/30">
+          <p className="text-purple-300 text-xs sm:text-sm font-semibold mb-2">📄 Docs: {uploadedFiles.length}</p>
+          <div className="space-y-1">
             {uploadedFiles.map((file, idx) => (
-              <div key={idx} className="flex items-center justify-between bg-slate-700/50 p-2 rounded border border-slate-600/50">
-                <span className="text-sm text-slate-300 truncate">{file.name}</span>
+              <div key={idx} className="flex items-center justify-between bg-slate-700/50 p-1.5 sm:p-2 rounded border border-slate-600/50">
+                <span className="text-xs text-slate-300 truncate">{file.name}</span>
                 <button
                   onClick={() => handleRemoveFile(idx)}
-                  className="p-1 hover:bg-red-600/50 rounded transition"
+                  className="p-1 hover:bg-red-600/50 rounded transition text-xs sm:text-sm"
                   title="Remove file"
                 >
                   ✕
@@ -177,25 +178,25 @@ export default function ChatComponent({
 
       {/* Error */}
       {error && (
-        <div className="bg-red-900/50 border border-red-600/50 rounded-lg p-3 mb-4 backdrop-blur">
-          <p className="text-red-300 text-sm">{error}</p>
+        <div className="bg-red-900/50 border border-red-600/50 rounded-lg p-2 sm:p-3 mb-3 sm:mb-4 backdrop-blur">
+          <p className="text-red-300 text-xs sm:text-sm">{error}</p>
         </div>
       )}
 
       {/* Input */}
-      <form onSubmit={handleSendMessage} className="space-y-3">
-        <div className="flex gap-2">
+      <form onSubmit={handleSendMessage} className="space-y-2 sm:space-y-3">
+        <div className="flex gap-1 sm:gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about your documents or images..."
+            placeholder="Ask..."
             disabled={loading}
-            className="flex-1 px-4 py-2.5 bg-slate-700/50 text-white rounded-lg border border-slate-600/50 focus:border-cyan-500 focus:outline-none disabled:opacity-50 transition"
+            className="flex-1 px-2.5 sm:px-4 py-2 sm:py-2.5 bg-slate-700/50 text-xs sm:text-base text-white rounded-lg border border-slate-600/50 focus:border-cyan-500 focus:outline-none disabled:opacity-50 transition"
           />
-          <label className="px-4 py-2.5 bg-slate-700/50 hover:bg-slate-600/50 text-white rounded-lg border border-slate-600/50 cursor-pointer transition flex items-center gap-2">
+          <label className="px-2 sm:px-4 py-2 sm:py-2.5 bg-slate-700/50 hover:bg-slate-600/50 text-white rounded-lg border border-slate-600/50 cursor-pointer transition flex items-center gap-1 text-xs sm:text-base">
             📎
-            <span className="hidden sm:inline text-sm">Upload</span>
+            <span className="hidden sm:inline">Upload</span>
             <input
               ref={fileInputRef}
               type="file"
@@ -209,16 +210,16 @@ export default function ChatComponent({
           <button
             type="submit"
             disabled={loading || (!input.trim() && uploadedFiles.length === 0)}
-            className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 disabled:from-gray-600 disabled:to-gray-700 text-white rounded-lg transition flex items-center gap-2 shadow-lg shadow-cyan-500/30 disabled:shadow-none transform hover:scale-105 disabled:hover:scale-100"
+            className="px-2.5 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 disabled:from-gray-600 disabled:to-gray-700 text-white rounded-lg transition flex items-center gap-1 sm:gap-2 shadow-lg shadow-cyan-500/30 disabled:shadow-none transform hover:scale-105 disabled:hover:scale-100"
           >
             {loading ? (
-              <Loader className="w-4 h-4 animate-spin" />
+              <Loader className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
             ) : (
-              <Send className="w-4 h-4" />
+              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
             )}
           </button>
         </div>
-        <p className="text-xs text-slate-400">Supported: PDF, TXT, DOC, DOCX, PPT, PPTX, JPG, PNG, GIF, WebP, BMP (Max 10MB each)</p>
+        <p className="text-xs text-slate-400 leading-tight">PDF, TXT, DOC, DOCX, PPT, PPTX, Images (Max 10MB each)</p>
       </form>
     </div>
   );

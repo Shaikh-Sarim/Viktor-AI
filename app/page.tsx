@@ -24,20 +24,20 @@ export default function Home() {
       <div className="relative z-10">
         {/* Navigation */}
         <nav className="border-b border-slate-700/50 bg-slate-900/30 backdrop-blur-md sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2.5 rounded-lg shadow-lg shadow-cyan-500/50">
-                <Brain className="w-6 h-6 text-white" />
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2 sm:p-2.5 rounded-lg shadow-lg shadow-cyan-500/50">
+                <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Viktor AI</h1>
+              <h1 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Viktor AI</h1>
             </div>
-            <div className="flex items-center gap-4">
-              <Link href="/login" className="text-slate-300 hover:text-white transition-colors duration-300 font-medium">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <Link href="/login" className="hidden sm:block text-slate-300 hover:text-white transition-colors duration-300 font-medium text-sm">
                 Login
               </Link>
               <Link
                 href="/register"
-                className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105"
+                className="px-3 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg font-bold transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 text-sm sm:text-base"
               >
                 Sign Up
               </Link>
@@ -46,28 +46,28 @@ export default function Home() {
         </nav>
 
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 py-24">
-          <div className="text-center mb-20">
-            <div className="mb-6 inline-block px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-full backdrop-blur">
-              <span className="text-sm font-semibold text-cyan-300">⚡ AI-Powered Platform</span>
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-12 sm:py-24">
+          <div className="text-center mb-12 sm:mb-20">
+            <div className="mb-4 sm:mb-6 inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-full backdrop-blur">
+              <span className="text-xs sm:text-sm font-semibold text-cyan-300">⚡ AI-Powered Platform</span>
             </div>
-            <h2 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               Create Content<br/>
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">Instantly with AI</span>
             </h2>
-            <p className="text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 mb-6 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
               Generate high-quality content in seconds. No expensive APIs. Works locally on your machine with lightning-fast LLMs.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
+            <div className="flex gap-2 sm:gap-4 justify-center flex-wrap">
               <Link
                 href="/register"
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-xl text-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 flex items-center gap-2"
+                className="px-4 sm:px-8 py-2.5 sm:py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 flex items-center gap-2"
               >
                 Get Started Free →
               </Link>
               <Link
                 href="/login"
-                className="px-8 py-4 border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold rounded-xl text-lg transition-all duration-300 backdrop-blur hover:border-cyan-400"
+                className="px-4 sm:px-8 py-2.5 sm:py-4 border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg transition-all duration-300 backdrop-blur hover:border-cyan-400"
               >
                 Sign In
               </Link>
@@ -75,10 +75,10 @@ export default function Home() {
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8 backdrop-blur hover:bg-slate-800/70 transition-all duration-300 hover:border-cyan-500/50 group">
-              <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-3.5 rounded-lg w-fit mb-4 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-shadow duration-300">
-                <Zap className="w-7 h-7 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-24">
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 backdrop-blur hover:bg-slate-800/70 transition-all duration-300 hover:border-cyan-500/50 group">
+              <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2.5 sm:p-3 md:p-3.5 rounded-lg w-fit mb-3 sm:mb-4 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-shadow duration-300">
+                <Zap className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">⚡ Lightning Fast</h3>
               <p className="text-slate-300 leading-relaxed">
