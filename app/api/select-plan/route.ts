@@ -17,10 +17,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userId = (session.user as any).id || session.user.email;
+    const userId = (session.user as any).id;
     
     if (!userId) {
-      return NextResponse.json({ error: "User ID not found" }, { status: 400 });
+      return NextResponse.json({ error: "User ID not found in session" }, { status: 400 });
     }
 
     const { plan } = await request.json();
