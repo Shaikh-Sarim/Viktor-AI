@@ -147,11 +147,16 @@ function LoginContent() {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-slate-700/50 text-center">
+          <div className="mt-8 pt-6 border-t border-slate-700/50 text-center space-y-4">
             <p className="text-slate-400 text-sm">
               Don't have an account?{" "}
               <Link href="/register" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors duration-300">
                 Create one now
+              </Link>
+            </p>
+            <p className="text-slate-500 text-xs">
+              <Link href="/admin/login" className="text-slate-400 hover:text-slate-300 underline transition-colors duration-300">
+                Admin Portal
               </Link>
             </p>
           </div>

@@ -79,6 +79,7 @@ export async function POST(request: NextRequest) {
 
     let prompt = "";
     let documentContent = "";
+    let conversationHistory: Array<{role: string; content: string}> = [];
 
     // Check if request is FormData (with files) or JSON
     const contentType = request.headers.get("content-type");
@@ -87,6 +88,16 @@ export async function POST(request: NextRequest) {
       // Handle FormData with documents
       const formData = await request.formData();
       prompt = formData.get("prompt") as string || "";
+      
+      // Parse conversation history if provided
+      const historyStr = formData.get("conversationHistory") as string;
+      if (historyStr) {
+        try {
+          conversationHistory = JSON.parse(historyStr);
+        } catch (e) {
+          console.error("Error parsing conversation history:", e);
+        }
+      }
       
       const documents = formData.getAll("documents");
       console.log(`Received ${documents.length} documents`);
@@ -192,11 +203,18 @@ export async function POST(request: NextRequest) {
       console.log("✓ Document content included in message");
     }
     
+    // Build messages array with conversation history
+    const messages = [
+      ...conversationHistory.slice(-10), // Include last 10 messages for context
+      { role: "user", content: messageContent }
+    ];
+    console.log(`Using conversation with ${conversationHistory.length} previous messages`);
+    
     let response;
     try {
       response = await axios.post(`${GROQ_API_URL}/chat/completions`, {
         model: GROQ_MODEL,
-        messages: [{ role: "user", content: messageContent }],
+        messages: messages,
         temperature: 0.7,
         max_tokens: 1024,
       }, {

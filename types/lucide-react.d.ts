@@ -17,9 +17,15 @@ declare module "lucide-react" {
   export const MessageCircle: ComponentType<IconProps>;
   export const Code2: ComponentType<IconProps>;
   export const Copy: ComponentType<IconProps>;
+  export const Check: ComponentType<IconProps>;
   export const Image: ComponentType<IconProps>;
   export const Download: ComponentType<IconProps>;
   export const Sparkles: ComponentType<IconProps>;
   export const FileText: ComponentType<IconProps>;
   export const LogOut: ComponentType<IconProps>;
+  export const Lock: ComponentType<IconProps>;
+  export const Users: ComponentType<IconProps>;
+  export const Users2: ComponentType<IconProps>;
+  export const TrendingUp: ComponentType<IconProps>;
+  export const DollarSign: ComponentType<IconProps>;
 }
