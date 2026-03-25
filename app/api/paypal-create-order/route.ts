@@ -82,8 +82,6 @@ export async function POST(request: NextRequest) {
         { status: 503 }
       );
     }
-      });
-    }
 
     const planInfo = PLAN_PRICES[plan];
     const accessToken = await getPayPalAccessToken();

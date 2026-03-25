@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { Brain, Zap, Shield, BarChart3, Star, TrendingUp, Code2, Pencil, MessageSquare, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Brain, Zap, Shield, BarChart3, Trophy, TrendingUp, Code2, Edit, MessageCircle, Sparkles, ChevronRight, CheckCircle } from "lucide-react";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -81,7 +81,7 @@ export default function Home() {
   // Features with descriptions
   const features = [
     {
-      icon: <Pencil className="w-8 h-8" />,
+      icon: <Edit className="w-8 h-8" />,
       title: "Content Generation",
       description: "Create blog posts, emails, social media content, and product descriptions with AI precision.",
       color: "from-blue-500 to-cyan-500",
@@ -93,7 +93,7 @@ export default function Home() {
       color: "from-purple-500 to-pink-500",
     },
     {
-      icon: <MessageSquare className="w-8 h-8" />,
+      icon: <MessageCircle className="w-8 h-8" />,
       title: "AI Chat",
       description: "Interactive conversations with advanced AI. Get answers, brainstorm ideas, and solve problems.",
       color: "from-green-500 to-emerald-500",
@@ -217,7 +217,7 @@ export default function Home() {
                 href="/register"
                 className="px-4 sm:px-8 py-2.5 sm:py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 flex items-center gap-2 group"
               >
-                Get Started Free <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Get Started Free <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/login"
@@ -319,7 +319,7 @@ export default function Home() {
 
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Trophy key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
 
@@ -342,7 +342,7 @@ export default function Home() {
               <ul className="space-y-3">
                 {["<100ms response time", "No waiting queues", "Instant export options"].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-slate-300">
-                    <CheckCircle2 className="w-5 h-5 text-cyan-400" />
+                    <CheckCircle className="w-5 h-5 text-cyan-400" />
                     {item}
                   </li>
                 ))}
@@ -356,7 +356,7 @@ export default function Home() {
               <ul className="space-y-3">
                 {["End-to-end encryption", "SOC 2 Type II certified", "Zero-knowledge architecture"].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-slate-300">
-                    <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                    <CheckCircle className="w-5 h-5 text-blue-400" />
                     {item}
                   </li>
                 ))}
@@ -382,19 +382,19 @@ export default function Home() {
                 <p className="text-slate-400 text-sm mb-6">Forever free</p>
                 <div className="space-y-3 mb-8 pb-8 border-b border-slate-700/50">
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">100 credits/month</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">Chat with AI</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">Web search</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">Content generation</span>
                   </div>
                 </div>
@@ -413,19 +413,19 @@ export default function Home() {
                 <p className="text-slate-400 text-sm mb-6">For hobbyists</p>
                 <div className="space-y-3 mb-8 pb-8 border-b border-slate-700/50">
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">500 credits/month</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">Everything in Free</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">API access</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">Priority support</span>
                   </div>
                 </div>
@@ -447,19 +447,19 @@ export default function Home() {
                 <p className="text-cyan-200 text-sm mb-6">For professionals</p>
                 <div className="space-y-3 mb-8 pb-8 border-b border-cyan-400/30">
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-white" />
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span className="text-cyan-50">2,000 credits/month</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-white" />
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span className="text-cyan-50">Everything in Basic</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-white" />
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span className="text-cyan-50">Full API access</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-white" />
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span className="text-cyan-50">Advanced analytics</span>
                   </div>
                 </div>
@@ -478,19 +478,19 @@ export default function Home() {
                 <p className="text-slate-400 text-sm mb-6">For power users</p>
                 <div className="space-y-3 mb-8 pb-8 border-b border-slate-700/50">
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">10,000 credits/month</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">Everything in Pro</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">Dedicated support</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-slate-300">White-label options</span>
                   </div>
                 </div>
@@ -508,7 +508,7 @@ export default function Home() {
                 href="/pricing"
                 className="text-cyan-400 hover:text-cyan-300 font-semibold text-lg transition-colors duration-300 inline-flex items-center gap-2"
               >
-                Explore all features <ArrowRight className="w-5 h-5" />
+                Explore all features <ChevronRight className="w-5 h-5" />
               </Link>
             </div>
           </div>
@@ -525,7 +525,7 @@ export default function Home() {
               href="/register"
               className="inline-block px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-xl text-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transform hover:scale-105 flex items-center gap-2 justify-center"
             >
-              Get Started Now <ArrowRight className="w-5 h-5" />
+              Get Started Now <ChevronRight className="w-5 h-5" />
             </Link>
           </div>
 

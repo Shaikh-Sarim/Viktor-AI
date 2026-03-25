@@ -10,8 +10,8 @@ import {
   Zap,
   MessageCircle,
   Code2,
-  Settings,
-  CreditCard,
+  Gear,
+  Wallet,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import ContentGenerator from "@/components/ContentGenerator";
@@ -129,11 +129,11 @@ export default function Dashboard() {
               </div>
               
               <a href="/subscription" title="Subscription & Billing" className="hidden sm:flex items-center justify-center px-3 py-2.5 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 text-slate-400 hover:text-cyan-400 transition-all duration-300 font-semibold text-sm border border-slate-600 hover:border-cyan-500/50">
-                <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Wallet className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               
               <a href="/subscription" title="Subscription & Billing" className="sm:hidden flex items-center justify-center px-2 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 text-slate-400 hover:text-cyan-400 transition-all duration-300 font-semibold text-sm border border-slate-600 hover:border-cyan-500/50">
-                <CreditCard className="w-5 h-5" />
+                <Wallet className="w-5 h-5" />
               </a>
               
               <button onClick={() => signOut()} className="hidden sm:flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 font-semibold shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transform hover:scale-105 text-sm">
@@ -206,7 +206,7 @@ export default function Dashboard() {
 
               {/* Subscription Management Card */}
               <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg sm:rounded-2xl p-4 sm:p-6 backdrop-blur border border-cyan-500/50 hover:border-cyan-500/70 transition-all duration-300">
-                <h3 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2"><CreditCard className="w-5 h-5 text-cyan-400" /><span>Plan & Billing</span></h3>
+                <h3 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2"><Wallet className="w-5 h-5 text-cyan-400" /><span>Plan & Billing</span></h3>
                 <div className="space-y-3 sm:space-y-4">
                   <div className="p-3 sm:p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
                     <p className="text-slate-400 text-xs mb-1">Current Plan</p>

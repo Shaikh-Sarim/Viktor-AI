@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Brain, ArrowLeft, Zap, Calendar, RefreshCw, Trash2, TrendingUp, CheckCircle2, AlertCircle } from "lucide-react";
+import { Brain, ChevronLeft, Zap, Calendar, RotateCw, Trash2, TrendingUp, CheckCircle, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 interface SubscriptionData {
@@ -137,7 +137,7 @@ export default function SubscriptionManagement() {
         <nav className="border-b border-slate-700/50 bg-slate-900/30 backdrop-blur-md sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <ArrowLeft className="w-5 h-5 text-cyan-400" />
+              <ChevronLeft className="w-5 h-5 text-cyan-400" />
               <span className="text-slate-300 font-semibold">Back to Dashboard</span>
             </Link>
             <div className="flex items-center gap-3">
@@ -250,15 +250,15 @@ export default function SubscriptionManagement() {
 
                       <div className="mb-6 pb-6 border-b border-slate-700/50 space-y-3">
                         <div className="flex items-center gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-green-400" />
+                          <CheckCircle className="w-5 h-5 text-green-400" />
                           <span className="text-slate-300">{plan.credits} credits/month</span>
                         </div>
                         <div className="flex items-center gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-green-400" />
+                          <CheckCircle className="w-5 h-5 text-green-400" />
                           <span className="text-slate-300">Full feature access</span>
                         </div>
                         <div className="flex items-center gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-green-400" />
+                          <CheckCircle className="w-5 h-5 text-green-400" />
                           <span className="text-slate-300">Priority support</span>
                         </div>
                       </div>
@@ -282,7 +282,7 @@ export default function SubscriptionManagement() {
             <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 backdrop-blur">
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-cyan-500/20 p-3 rounded-lg">
-                  <RefreshCw className="w-6 h-6 text-cyan-400" />
+                  <RotateCw className="w-6 h-6 text-cyan-400" />
                 </div>
                 <h4 className="text-xl font-bold text-white">Auto-Renewal</h4>
               </div>
@@ -324,7 +324,7 @@ export default function SubscriptionManagement() {
                 "Advanced Analytics (Pro+)",
               ].map((feature, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                   <span className="text-slate-300">{feature}</span>
                 </div>
               ))}

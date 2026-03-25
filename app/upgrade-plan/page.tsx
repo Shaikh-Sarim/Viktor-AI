@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Brain, ArrowLeft, CheckCircle2, Zap, TrendingUp, Code2, Shield, Sparkles, MessageSquare } from "lucide-react";
+import { Brain, ChevronLeft, CheckCircle, Zap, TrendingUp, Code2, Shield, Sparkles, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 interface Subscription {
@@ -168,7 +168,7 @@ export default function UpgradePlan() {
       description: "Multiple language support",
     },
     {
-      icon: <MessageSquare className="w-8 h-8" />,
+      icon: <MessageCircle className="w-8 h-8" />,
       title: "Learn More",
       description: "AI Chat support",
     },
@@ -193,7 +193,7 @@ export default function UpgradePlan() {
         <nav className="border-b border-slate-700/50 bg-slate-900/30 backdrop-blur-md sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/subscription" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <ArrowLeft className="w-5 h-5 text-cyan-400" />
+              <ChevronLeft className="w-5 h-5 text-cyan-400" />
               <span className="text-slate-300 font-semibold">Back</span>
             </Link>
             <div className="flex items-center gap-3">
@@ -252,7 +252,7 @@ export default function UpgradePlan() {
 
                   {isCurrent && (
                     <div className="absolute top-4 right-4 px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full flex items-center gap-1">
-                      <CheckCircle2 className="w-4 h-4" />
+                      <CheckCircle className="w-4 h-4" />
                       Current
                     </div>
                   )}
@@ -281,7 +281,7 @@ export default function UpgradePlan() {
                   <div className="mb-8 pb-8 border-b border-slate-700/50 space-y-3">
                     {plan.features.map((feature, i) => (
                       <div key={i} className="flex items-center gap-3">
-                        <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${plan.popular ? "text-white" : "text-green-400"}`} />
+                        <CheckCircle className={`w-5 h-5 flex-shrink-0 ${plan.popular ? "text-white" : "text-green-400"}`} />
                         <span className={`text-sm ${plan.popular ? "text-cyan-50" : "text-slate-300"}`}>
                           {feature}
                         </span>

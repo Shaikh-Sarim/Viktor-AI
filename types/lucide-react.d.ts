@@ -28,4 +28,15 @@ declare module "lucide-react" {
   export const Users2: ComponentType<IconProps>;
   export const TrendingUp: ComponentType<IconProps>;
   export const DollarSign: ComponentType<IconProps>;
+  export const Trophy: ComponentType<IconProps>;
+  export const Edit: ComponentType<IconProps>;
+  export const ChevronRight: ComponentType<IconProps>;
+  export const CheckCircle: ComponentType<IconProps>;
+  export const ChevronLeft: ComponentType<IconProps>;
+  export const RotateCw: ComponentType<IconProps>;
+  export const Trash2: ComponentType<IconProps>;
+  export const AlertCircle: ComponentType<IconProps>;
+  export const Gear: ComponentType<IconProps>;
+  export const Wallet: ComponentType<IconProps>;
+  export const Calendar: ComponentType<IconProps>;
 }
