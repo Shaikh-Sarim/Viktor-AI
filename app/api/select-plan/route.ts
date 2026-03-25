@@ -9,6 +9,9 @@ const PLAN_CREDITS: Record<string, number> = {
   pro_plus: 10000,
 };
 
+// Only free plan can be selected without payment
+const FREE_PLANS = ["free"];
+
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
@@ -31,11 +34,20 @@ export async function POST(request: NextRequest) {
     const { plan } = body;
     console.log("Plan requested:", plan);
 
+    // Enforce: Paid plans MUST go through PayPal payment
     if (!plan || !PLAN_CREDITS[plan]) {
       console.error("Invalid plan:", plan);
       return NextResponse.json(
         { error: "Invalid plan" },
         { status: 400 }
+      );
+    }
+
+    if (!FREE_PLANS.includes(plan)) {
+      console.error("Paid plan requested through select-plan endpoint. Must use PayPal:", plan);
+      return NextResponse.json(
+        { error: "Paid plans require PayPal payment. Use /api/paypal-create-order instead" },
+        { status: 403 }
       );
     }
 

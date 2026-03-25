@@ -71,33 +71,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // If PayPal not configured, create subscription directly (for testing)
+    // PayPal MUST be configured for paid plans - no test mode bypass
     if (!PAYPAL_CLIENT_ID || !PAYPAL_SECRET) {
-      console.warn("PayPal not configured. Creating subscription without payment.");
-      const subscription = await prisma.subscription.upsert({
-        where: { userId: userId },
-        create: {
-          userId: userId,
-          plan: plan,
-          credits: PLAN_PRICES[plan].credits,
+      console.error("PayPal credentials not configured for paid plan purchase");
+      return NextResponse.json(
+        {
+          error: "Payment system not available",
+          details: "PayPal is not configured. Please contact support or try again later.",
         },
-        update: {
-          plan: plan,
-          credits: PLAN_PRICES[plan].credits,
-        },
-      });
-
-      await prisma.user.update({
-        where: { id: userId },
-        data: {
-          credits: PLAN_PRICES[plan].credits,
-        },
-      });
-
-      return NextResponse.json({
-        success: true,
-        subscription,
-        testMode: true,
+        { status: 503 }
+      );
+    }
       });
     }
 

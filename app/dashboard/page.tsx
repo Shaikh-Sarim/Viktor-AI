@@ -10,6 +10,8 @@ import {
   Zap,
   MessageCircle,
   Code2,
+  Settings,
+  CreditCard,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import ContentGenerator from "@/components/ContentGenerator";
@@ -24,13 +26,40 @@ export default function Dashboard() {
   const [isClient, setIsClient] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("content");
   const [credits, setCredits] = useState(100);
+  const [hasValidSubscription, setHasValidSubscription] = useState<boolean | null>(null);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  // Check if user has a valid subscription
   useEffect(() => {
     if (session?.user?.id) {
+      const checkSubscription = async () => {
+        try {
+          const response = await fetch("/api/user-subscription");
+          if (response.ok) {
+            const data = await response.json();
+            setHasValidSubscription(data.hasSubscription);
+            if (!data.hasSubscription) {
+              // Redirect to plan selection if no subscription
+              router.push("/choose-plan?reason=subscription_required");
+            }
+          } else {
+            setHasValidSubscription(false);
+            router.push("/choose-plan?reason=subscription_required");
+          }
+        } catch (error) {
+          console.error("Failed to check subscription:", error);
+          setHasValidSubscription(false);
+        }
+      };
+      checkSubscription();
+    }
+  }, [session?.user?.id, router]);
+
+  useEffect(() => {
+    if (session?.user?.id && hasValidSubscription) {
       const fetchCredits = async () => {
         try {
           const response = await fetch("/api/user-credits");
@@ -44,7 +73,7 @@ export default function Dashboard() {
       };
       fetchCredits();
     }
-  }, [session?.user?.id]);
+  }, [session?.user?.id, hasValidSubscription]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -52,7 +81,7 @@ export default function Dashboard() {
     }
   }, [status, router]);
 
-  if (!isClient || status === "loading") {
+  if (!isClient || status === "loading" || hasValidSubscription === null) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-slate-900">
         <div className="text-white text-xl">Loading...</div>
@@ -98,6 +127,15 @@ export default function Dashboard() {
                 <Zap className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${credits <= 0 ? "text-red-500" : credits <= 10 ? "text-yellow-500" : "text-cyan-400"}`} />
                 <span className={`font-bold text-xs sm:text-sm ${credits <= 0 ? "text-red-300" : credits <= 10 ? "text-yellow-300" : "text-cyan-300"}`}>{credits}</span>
               </div>
+              
+              <a href="/subscription" title="Subscription & Billing" className="hidden sm:flex items-center justify-center px-3 py-2.5 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 text-slate-400 hover:text-cyan-400 transition-all duration-300 font-semibold text-sm border border-slate-600 hover:border-cyan-500/50">
+                <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+              
+              <a href="/subscription" title="Subscription & Billing" className="sm:hidden flex items-center justify-center px-2 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 text-slate-400 hover:text-cyan-400 transition-all duration-300 font-semibold text-sm border border-slate-600 hover:border-cyan-500/50">
+                <CreditCard className="w-5 h-5" />
+              </a>
+              
               <button onClick={() => signOut()} className="hidden sm:flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 font-semibold shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transform hover:scale-105 text-sm">
                 <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span className="hidden sm:inline">Sign Out</span>
@@ -163,6 +201,23 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-3 sm:mt-4 p-2.5 sm:p-3 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg border border-purple-500/30">
                   <p className="text-purple-300 text-xs font-semibold">💾 Current cost: {creditCosts[activeTab]} credits per generation</p>
+                </div>
+              </div>
+
+              {/* Subscription Management Card */}
+              <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg sm:rounded-2xl p-4 sm:p-6 backdrop-blur border border-cyan-500/50 hover:border-cyan-500/70 transition-all duration-300">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2"><CreditCard className="w-5 h-5 text-cyan-400" /><span>Plan & Billing</span></h3>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="p-3 sm:p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
+                    <p className="text-slate-400 text-xs mb-1">Current Plan</p>
+                    <p className="text-cyan-300 font-bold text-sm sm:text-base">Premium Access Active</p>
+                  </div>
+                  <a href="/subscription" className="block w-full py-2 px-3 sm:px-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold rounded-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 text-center text-sm">
+                    Manage Subscription
+                  </a>
+                  <a href="/upgrade-plan" className="block w-full py-2 px-3 sm:px-4 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-lg transition-all duration-300 text-center text-sm">
+                    View Plans
+                  </a>
                 </div>
               </div>
 

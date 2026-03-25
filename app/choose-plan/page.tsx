@@ -99,17 +99,21 @@ function ChoosePlanContent() {
           router.push("/dashboard");
         }
       } else {
-        // Paid plan: try PayPal first, fallback to test mode
+        // Paid plan: MUST use PayPal payment (no test/free access)
         const response = await axios.post("/api/paypal-create-order", {
           plan: selectedPlan,
         });
 
-        if (response.data?.testMode) {
-          // Test mode: no PayPal configured, subscription created directly
-          router.push("/dashboard");
-        } else if (response.data?.approvalUrl) {
+        if (response.data?.approvalUrl) {
           // PayPal configured: redirect to PayPal checkout
           window.location.href = response.data.approvalUrl;
+        } else if (response.data?.testMode) {
+          // Test mode should NOT be used for paid plans - enforce payment
+          alert("PayPal payment is required for paid plans. Please complete payment to access these features.");
+          setLoading(false);
+          return;
+        } else {
+          throw new Error("PayPal configuration error. Please contact support.");
         }
       }
     } catch (error) {
